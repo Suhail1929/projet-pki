@@ -34,4 +34,4 @@ Le projet consiste à simuler une autorité de certification (CA) qui gère des 
 ## Auteur
 - [Hocine HADID | @hocine280]
 - [Suhail MTARFI | @Suhail1929]
-- [Guillaume Desessard | @..]
+- [Guillaume Desessard | @karibou12]
