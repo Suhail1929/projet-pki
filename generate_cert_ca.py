@@ -6,10 +6,10 @@ from cryptography.hazmat.primitives import hashes
 import datetime
 
 
-# Generate CA key
+# Générer la clé de l'autorité de certification (CA)
 ca_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 
-# Generate CA certificate
+# Générer le certificat de l'autorité de certification (CA)
 subject = issuer = x509.Name([
     x509.NameAttribute(NameOID.COUNTRY_NAME, u"FR"),
     x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, u"IDF"),
@@ -28,11 +28,11 @@ ca_cert = x509.CertificateBuilder().subject_name(subject).issuer_name(issuer).pu
     critical=False,
 ).sign(ca_key, hashes.SHA256())
 
-# Save CA certificate
+# Enregistrer le certificat de l'autorité de certification (CA)
 with open("ca_cert.pem", "wb") as f:
     f.write(ca_cert.public_bytes(serialization.Encoding.PEM))
 
-# Save CA key (optional, for future use)
+# Enregistrer la clé de l'autorité de certification (CA) (facultatif, pour une utilisation future)
 with open("ca_key.pem", "wb") as f:
     f.write(ca_key.private_bytes(
         encoding=serialization.Encoding.PEM,
