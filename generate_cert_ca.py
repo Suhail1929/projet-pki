@@ -1,3 +1,13 @@
+#-------------------------------------------------------------------------------
+#   @file generate_cert_ca.py
+#   @author HADID Hocine, MTARFI Suhail et DESESSARD Guillaume
+#   @brief Code permettant de générer un certificat pour l'autorité de certification (CA)
+#   @version 1.0
+#   @date 22/05/2024
+#   @compiler Python 3.11.1
+#   @copyright Copyright (c) 2024
+#-------------------------------------------------------------------------------
+
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography import x509
