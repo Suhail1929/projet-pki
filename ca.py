@@ -29,16 +29,21 @@ Elle gère également les demandes de révocation de certificats et vérifie l'�
 '''
 
 def decrypt_with_rsa(private_key, ciphertext):
-    # Déchiffrement RSA de la clé AES
-    plaintext = private_key.decrypt(
-        ciphertext,
-        padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
+    try:
+        # Déchiffrement RSA de la clé AES
+        plaintext = private_key.decrypt(
+            ciphertext,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
         )
-    )
-    return plaintext
+        return plaintext
+    except Exception as e:
+        print(f"RSA decryption failed: {e}")
+        return None
+
 
 def encrypt_with_aes(key, plaintext):
     # Chiffrer avec AES
