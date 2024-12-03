@@ -203,6 +203,16 @@ class Vendor:
                 "cert": self.cert
             }
             self.mqtt_client.publish(message["response_topic"], json.dumps(response))
+            
+        if message["type"] == "vendor_request_tester_cert":
+            # Si le message est une demande de certificat de vendeur
+            print(f"Vendor {self.id} received client request")
+            # Répondre avec le certificat du vendeur
+            response = {
+                "type": "vendor_cert_tester",
+                "cert": self.cert
+            }
+            self.mqtt_client.publish(message["response_topic"], json.dumps(response))
 
 
     def revoke_cert(self):
@@ -242,7 +252,7 @@ vendor_id = int(input("Enter the vendor ID: "))
 if vendor_id == 1:
     vendor1 = Vendor(id=1, revoked=False)
 elif vendor_id == 2:
-    vendor2 = Vendor(id=2, revoked=True)
+    vendor2 = Vendor(id=2, revoked=True)           
 
 
 # Maintenir les vendeurs en activité
